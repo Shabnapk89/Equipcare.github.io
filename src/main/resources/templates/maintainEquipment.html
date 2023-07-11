@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dashboard - SB Admin</title>
+  <link th:href="@{/style.css}" rel="stylesheet" type="text/css" />
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+<div th:replace="../fragments/fragments :: header">...</div>
+<div id="layoutSidenav">
+  <div th:replace="../fragments/fragments :: sidenav">...</div>
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid px-4">
+        <h1 class="mt-4">Maintain Equipment</h1>
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item active">Equipment Management</li>
+        </ol>
+        <div class="row">
+          <!--  Create User flow Start-->
+          <div class="alert alert-danger" th:if="${errorMsg != null}" th:text="${errorMsg}"></div> <!--Global Error Message-->
+          <form action="#" th:action="@{/hems/maintainEquipment}" th:object="${maintain}" method="post"> <!--Form Action to Create Equipment-->
+            <div class="form-group">
+              <label>Equipment Name</label>
+              <select class="form-control" id="" th:field="*{equipmentId}">
+                <option th:each="equipment: ${equipmentList}"
+                        th:value="${equipment.equipmentId}" th:text="${equipment.equipmentName}"></option>
+              </select>
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('equipmentId')}" th:errors="*{equipmentId}"></div>
+            </div>
+            <div class="form-group">
+              <label >Details</label>
+              <input type="text" class="form-control" placeholder="Enter the Details " th:field="*{details}">
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('details')}" th:errors="*{details}"></div>
+            </div>
+            <div class="form-group">
+              <label >Due Date</label>
+              <input type="text" class="form-control" placeholder="Enter the due date (MM/DD/YYYY)" th:field="*{dueDate}">
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}"></div>
+            </div>
+            <div class="form-group">
+              <label>MaintainStaff</label>
+              <select class="form-control" id="" th:field="*{user}">
+                <option th:each="user: ${engineerUsers}"
+                        th:value="${user.userId}" th:text="${user.firstName} +' '+ ${user.lastName}"></option>
+              </select>
+              <div class="alert alert-warning" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></div>
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Submit" class="btn btn-primary">
+
+            </div>
+          </form>
+          <!--Create User Flow End-->
+        </div>
+      </div>
+    </main>
+    <div th:replace="../fragments/fragments :: footer">...</div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

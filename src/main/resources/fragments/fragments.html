@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark"  th:fragment="header">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="index.html">Equip Care</a>
+    <!-- Sidebar Toggle-->
+
+    <!-- Navbar Search-->
+    <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <form th:action="@{/logout}" name="logoutForm" method="post" th:hidden="true">
+            <input type="submit" value="sign out" th:hidden="true">
+        </form>
+    </div>
+
+    <!-- Navbar-->
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="javascript: document.logoutForm.submit()">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div id="layoutSidenav_nav" th:fragment="sidenav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <a class="nav-link" href="/hems/home" sec:authorize="hasAuthority('Admin')">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
+                    Home
+                </a>
+                <a class="nav-link" href="/hems/engHome" sec:authorize="hasAuthority('MaintenanceEngineer')">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
+                    Home
+                </a>
+                <a class="nav-link" href="/hems/staffHome" sec:authorize="hasAuthority('StaffIncharge')">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
+                    Home
+                </a>
+                <div class="sb-sidenav-menu-heading">Modules</div>
+                <!--<p th:each="authority : ${#authentication.getAuthorities()}" th:text="${authority.getAuthority()}"></p>-->
+                <div sec:authorize="hasAuthority('Admin')">
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#userManagement" aria-expanded="false" aria-controls="userManagement">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                        User Management
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="userManagement" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="/hems/listUser">List Users</a>
+                            <a class="nav-link" href="/hems/createuser">Create User</a>
+                        </nav>
+                    </div>
+                </div>
+
+                <div sec:authorize="hasAuthority('Admin')">
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#equipMgmt" aria-expanded="false" aria-controls="equipMgmt">
+                        <div class="sb-nav-link-icon"><i class="fas fa-desktop"></i></div>
+                        Equipment Management
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="equipMgmt" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="/hems/listEquipments">List Equipments</a>
+                            <a class="nav-link" href="/hems/createEquipment">Create Equipment</a>
+                        </nav>
+                    </div>
+                </div>
+
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#maintain" aria-expanded="false" aria-controls="equipMgmt">
+                    <div class="sb-nav-link-icon"><i class="fas fa-desktop"></i></div>
+                    Maintenance Management
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="maintain" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="/hems/ViewMaintenance">List Maintenance</a>
+                        <a sec:authorize="hasAuthority('Admin')" class="nav-link" href="/hems/maintainEquipment">Create Maintenance</a>
+                        <!--Role based authentication to hide and show the menu item based on the role-->
+                    </nav>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+</div>
+
+<footer class="py-4 bg-light mt-auto" th:fragment="footer">
+    <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+            <div>
+                <a href="#">Privacy Policy</a>
+                &middot;
+                <a href="#">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

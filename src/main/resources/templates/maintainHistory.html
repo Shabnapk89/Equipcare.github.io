@@ -1,0 +1,51 @@
+<script>
+
+     $(document).ready(function(){
+          $(document).on("click","#modelClose",function(event) {
+                          $('#maintHistoryModal').modal('hide');
+          });
+    });
+
+  </script>
+
+<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle" th:text="${history.equipmentName}"></h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modelClose">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Date </th>
+          <th scope="col">Engineer</th>
+          <th scope="col">Status</th>
+          <th scope="col">Details</th>
+        </tr>
+        </thead>
+        <tbody th:if="${not #lists.isEmpty(history.maintHistory)}">
+        <tr  th:each="history: ${history.maintHistory}">
+          <td th:text="${history.date}"></td>
+          <td th:text="${history.userName}"></td>
+          <td th:text="${history.status}"></td>
+          <td th:text="${history.details}"></td>
+          </td>
+        </tr>
+        </tbody>
+        <tbody th:if="${#lists.isEmpty(history.maintHistory)}">
+        <tr>
+          <td></td>
+          <td></td>
+          <td>No Data</td>
+          <td></td>
+          <td></td>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

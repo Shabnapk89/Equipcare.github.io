@@ -1,0 +1,2 @@
+<---INSERT INTO hems.user(user_id, created_by, created_date, email, first_name, last_name, hems.user.password, phone, hems.user.role)-->
+<--VALUES ('0', 'Admin', '2023-07-07 18:16:20.308000', 'testAdmin@gmail.com', 'Admin', 'Admin', 'Password', '1423684597', 'Admin');-->

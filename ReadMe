@@ -1,0 +1,41 @@
+#Equip-care( hospital equipment and maintenance management system )
+
+##About
+
+This project implemented  a system to manage hospital machines  (inventory management and maintenance management)
+
+ ##Roles
+     1)	Admin
+        Who is responsible for managing equipments and scheduling maintenance.
+     2)Maintenance engineer
+       Who is responsible for all equipment maintenance works.
+     3)Staff-in charge
+       One who is operating the machines.
+ ##Role privileges
+   •Admin:-
+    Admin can create ,delete, and update other users to the system.
+    Admin can add new machines to the specific department of the hospital and able to assign a staff-in charge to the specific machine.
+    Admin is responsible for scheduling maintenance and assign it to a maintenance engineer.
+    Other users can register to the system using email address and create the new passwords.
+   .Maintenance Engineer:-
+    Should be able to see the works assigned to him. when logged in.
+    System will allow Maintenance engineer to update the maintenance  work status.
+   •Staff-in charge:-
+    Should be able to see all the equipments used/assigned to the staff.
+    System will allow the staff to create maintenance request.
+
+    The system has provision to see the equipment maintenance history and cards to Show pending maintenance ,in progress maintenance ,completed maintenance.
+
+    ##Technologies-used
+    #Frond end
+     _HTML,CSS,javascript ,thymeleaf,AJAX,BootStrap.
+    #Api/Service Layer
+     _Spring boot,thymeleaf,Spring Security Spring JPA
+    Database
+      _MySQL
+    #Data base schema
+
+  ###  Requirements covered for capstone project.
+    Followed the defined Project structure ,standardization, and conventions.
+    Added adequate unit tests for services and repository classes including parameterized tests.
+
