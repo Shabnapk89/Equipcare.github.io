@@ -47,8 +47,10 @@ This project implemented  a system to manage hospital machines  (inventory manag
     adding log to spring.log
 
 Note:- Below are the SQL insert query for building the sample data.
-
+ 
 // User Table
+Note:- Password in sample data for all users is 'password'
+
 INSERT INTO hems.user(user_id,created_by,created_date,email,first_name,last_name,password,phone,role) VALUES (1,'Admin','2023-07-07 18:16:20.308000','adminone@gmail.com','Admin','One','$2a$10$UXnHg7jnBauOMd57Xh9luO.rJrerwndur.dumAydIXU/6D/FN8W2G',919987789876646,'Admin');
 INSERT INTO hems.user(user_id,created_by,created_date,email,first_name,last_name,password,phone,role) VALUES (102,'Admin','2023-07-12 00:42:45.819000','maintenanceone@gmail.com','Maintenance Engineer','One','$2a$10$tGUv79.25PBTuxCg9neHx.X0tdpweDGKOcuAC9q1LJsFA7YHJqHu.',4705467418,'MaintenanceEngineer');
 INSERT INTO hems.user(user_id,created_by,created_date,email,first_name,last_name,password,phone,role) VALUES (103,'Admin','2023-07-12 00:44:09.261000','maintenancetwo@gmail.com','maintenance Engineer','Two','$2a$10$/8Dpp4Gg1tmB8eBFF./UFeoIx6KbVmkgYC1frWA1Ygx3vF/ZVvWIO',4705467418,'MaintenanceEngineer');
