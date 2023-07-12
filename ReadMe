@@ -2,6 +2,8 @@
 
 Github URL:- https://github.com/Shabnapk89/Equipcare.github.io
 
+SQL query with sample data:-
+
 ##About
 
 This project implemented  a system to manage hospital machines  (inventory management and maintenance management)
@@ -44,4 +46,32 @@ This project implemented  a system to manage hospital machines  (inventory manag
     Included exception handling
     adding log to spring.log
 
+Note:- Below are the SQL insert query for building the sample data.
 
+// User Table
+INSERT INTO hems.user(user_id,created_by,created_date,email,first_name,last_name,password,phone,role) VALUES (1,'Admin','2023-07-07 18:16:20.308000','adminone@gmail.com','Admin','One','$2a$10$UXnHg7jnBauOMd57Xh9luO.rJrerwndur.dumAydIXU/6D/FN8W2G',919987789876646,'Admin');
+INSERT INTO hems.user(user_id,created_by,created_date,email,first_name,last_name,password,phone,role) VALUES (102,'Admin','2023-07-12 00:42:45.819000','maintenanceone@gmail.com','Maintenance Engineer','One','$2a$10$tGUv79.25PBTuxCg9neHx.X0tdpweDGKOcuAC9q1LJsFA7YHJqHu.',4705467418,'MaintenanceEngineer');
+INSERT INTO hems.user(user_id,created_by,created_date,email,first_name,last_name,password,phone,role) VALUES (103,'Admin','2023-07-12 00:44:09.261000','maintenancetwo@gmail.com','maintenance Engineer','Two','$2a$10$/8Dpp4Gg1tmB8eBFF./UFeoIx6KbVmkgYC1frWA1Ygx3vF/ZVvWIO',4705467418,'MaintenanceEngineer');
+INSERT INTO hems.user(user_id,created_by,created_date,email,first_name,last_name,password,phone,role) VALUES (104,'Admin','2023-07-12 00:45:15.507000','staffone@gmail.com','Staff-IN charge','One','$2a$10$/8Dpp4Gg1tmB8eBFF./UFeoIx6KbVmkgYC1frWA1Ygx3vF/ZVvWIO',4705467418,'StaffIncharge');
+INSERT INTO hems.user(user_id,created_by,created_date,email,first_name,last_name,password,phone,role) VALUES (105,'Admin','2023-07-12 00:45:51.148000','stafftwo@gmail.com','Staff-IN charge','Two','$2a$10$/8Dpp4Gg1tmB8eBFF./UFeoIx6KbVmkgYC1frWA1Ygx3vF/ZVvWIO',4705467418,'StaffIncharge');
+INSERT INTO hems.user(user_id,created_by,created_date,email,first_name,last_name,password,phone,role) VALUES (106,'Admin','2023-07-12 00:47:31.218000','admintwo@gmail.com','Admin','Two','$2a$10$/8Dpp4Gg1tmB8eBFF./UFeoIx6KbVmkgYC1frWA1Ygx3vF/ZVvWIO',4705467418,'Admin');
+
+
+// Maintenance
+INSERT INTO hems.maintenance(maintenance_id,created_by,created_date,details,due_date,equipment_id,user_id,status) VALUES (52,'Admin','2023-07-12 09:28:12.196000','Pump not working','2023-07-12 00:00:00.000000',1,103,'Completed');
+INSERT INTO hems.maintenance(maintenance_id,created_by,created_date,details,due_date,equipment_id,user_id,status) VALUES (53,'Admin','2023-07-12 09:29:25.858000','prob issue','2023-07-20 00:00:00.000000',2,102,'Inprogress');
+INSERT INTO hems.maintenance(maintenance_id,created_by,created_date,details,due_date,equipment_id,user_id,status) VALUES (54,'Admin','2023-07-12 09:30:31.040000','Movement issue','2023-06-12 00:00:00.000000',3,103,'Inprogress');
+INSERT INTO hems.maintenance(maintenance_id,created_by,created_date,details,due_date,equipment_id,user_id,status) VALUES (55,'Admin','2023-07-12 09:32:11.389000','Alignment issue','2023-07-20 00:00:00.000000',4,102,'Assigned');
+INSERT INTO hems.maintenance(maintenance_id,created_by,created_date,details,due_date,equipment_id,user_id,status) VALUES (56,'Admin','2023-07-12 09:41:49.946000','not working','2023-07-13 00:00:00.000000',6,102,'Completed');
+INSERT INTO hems.maintenance(maintenance_id,created_by,created_date,details,due_date,equipment_id,user_id,status) VALUES (57,'Admin','2023-07-12 09:42:35.739000','not working','2023-07-20 00:00:00.000000',5,103,'Inprogress');
+INSERT INTO hems.maintenance(maintenance_id,created_by,created_date,details,due_date,equipment_id,user_id,status) VALUES (102,'Admin','2023-07-12 10:35:07.358000','prob issue','2023-07-21 00:00:00.000000',1,102,'Assigned');
+INSERT INTO hems.maintenance(maintenance_id,created_by,created_date,details,due_date,equipment_id,user_id,status) VALUES (103,'Admin','2023-07-12 10:45:21.279000','not working','2023-07-14 00:00:00.000000',1,103,'Assigned');
+
+
+// Equipments
+INSERT INTO hems.equipment(equipment_id,created_by,created_date,description,name,serial_no,status,dep_id,user_id,equipment_name,department,part_no) VALUES (1,'Admin','2023-07-12 00:50:25.452000','Infution Pump installation to NICU',NULL,'46512','new',NULL,104,'Infusion Pump','nicu','466121');
+INSERT INTO hems.equipment(equipment_id,created_by,created_date,description,name,serial_no,status,dep_id,user_id,equipment_name,department,part_no) VALUES (2,'Admin','2023-07-12 00:51:37.545000','new scanner',NULL,'786','new',NULL,105,'Ultrasound Scanner','operationTheater','54d54');
+INSERT INTO hems.equipment(equipment_id,created_by,created_date,description,name,serial_no,status,dep_id,user_id,equipment_name,department,part_no) VALUES (3,'Admin','2023-07-12 09:25:13.218000','new scanner',NULL,'789','new',NULL,105,'CT scanner','laborRoom','45kl');
+INSERT INTO hems.equipment(equipment_id,created_by,created_date,description,name,serial_no,status,dep_id,user_id,equipment_name,department,part_no) VALUES (4,'Admin','2023-07-12 09:26:50.359000','Light replacememt',NULL,'90kl','new',NULL,104,'OT light','operationTheater','52154');
+INSERT INTO hems.equipment(equipment_id,created_by,created_date,description,name,serial_no,status,dep_id,user_id,equipment_name,department,part_no) VALUES (5,'Admin','2023-07-12 09:37:55.676000','new one',NULL,'4561','new',NULL,105,'Ventilator','operationTheater','244465fdgfd');
+INSERT INTO hems.equipment(equipment_id,created_by,created_date,description,name,serial_no,status,dep_id,user_id,equipment_name,department,part_no) VALUES (6,'Admin','2023-07-12 09:40:06.164000','new one',NULL,'521','new',NULL,105,'Patient Monitor','laborRoom','46kll');
