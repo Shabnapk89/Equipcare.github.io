@@ -18,7 +18,7 @@ public interface MaintenanceRepository extends CrudRepository<Maintenance,Long> 
     List<Maintenance> findByUser(User user);
     @Query(value = "SELECT status, count(status) FROM maintenance group by status", nativeQuery = true)
     List<Object[]> countByStatus();
-    @Query(value = "SELECT count(*) FROM maintenance where status != 'Completed' and due_date > now()", nativeQuery = true)
+    @Query(value = "SELECT count(*) FROM maintenance where status != 'Completed' and due_date < now()", nativeQuery = true)
     Long getOverDueCount();
 
     @Query(value = "SELECT status, count(status) FROM maintenance where user_id=:userId  group by status", nativeQuery = true)

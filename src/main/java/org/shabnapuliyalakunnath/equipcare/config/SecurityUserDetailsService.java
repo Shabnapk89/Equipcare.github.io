@@ -1,6 +1,7 @@
 package org.shabnapuliyalakunnath.equipcare.config;
 
 import org.shabnapuliyalakunnath.equipcare.entity.User;
+import org.shabnapuliyalakunnath.equipcare.exceptions.UserNotFoundException;
 import org.shabnapuliyalakunnath.equipcare.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,7 +24,7 @@ public class SecurityUserDetailsService implements UserDetailsService {
         User user = userRepository.findByEmail(username);
 
         if(user == null)
-            throw new UsernameNotFoundException("User with email: " +username +" not found !");
+            throw new UserNotFoundException("User with email: " +username +" not found !");
         else {
             List<SimpleGrantedAuthority> granted = new ArrayList<>();
             granted.add( new SimpleGrantedAuthority(user.getRole()));

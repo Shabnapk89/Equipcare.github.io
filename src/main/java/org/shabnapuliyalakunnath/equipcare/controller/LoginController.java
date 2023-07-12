@@ -28,9 +28,13 @@ public class LoginController {
     @Autowired
     MaintenanceService maintenanceService;
 
+    @GetMapping("/")
+    public String login_1(Model model) {
+        return "login";
+    }
     @GetMapping("/login")
     public String login(Model model) {
-        return "loginHome";
+        return "login";
     }
 
     @GetMapping("/home")

@@ -36,8 +36,12 @@ This project implemented  a system to manage hospital machines  (inventory manag
     Database
       _MySQL
     #Data base schema
+      The data base schema is available HEMS-Er.png
 
   ###  Requirements covered for capstone project.
     Followed the defined Project structure ,standardization, and conventions.
     Added adequate unit tests for services and repository classes including parameterized tests.
+    Included exception handling
+    adding log to spring.log
+
 

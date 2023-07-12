@@ -1,6 +1,7 @@
 package org.shabnapuliyalakunnath.equipcare.controller;
 
 import org.shabnapuliyalakunnath.equipcare.dto.UserDto;
+import org.shabnapuliyalakunnath.equipcare.exceptions.UserIdMismatchException;
 import org.shabnapuliyalakunnath.equipcare.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,13 @@ public class UserController {
         if(result.hasErrors()) {
             return "createUser";
         }
-        String res = userService.createUser(user);
+        String res = "";
+        try{
+            res = userService.createUser(user);
+        }catch (UserIdMismatchException e) {
+            res = e.getMessage();   // Ex
+        }
+
         if(!"Success".equalsIgnoreCase(res)) {
             model.addAttribute("errorMsg",res);
             model.addAttribute("isSuccess",false);

@@ -76,6 +76,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
             maintenanceDto.setUserName(maintenance.getUser().getFirstName() + " " + maintenance.getUser().getLastName());
             maintenanceDto.setStatus(maintenance.getStatus());
             maintenanceDto.setMaintenanceId(maintenance.getMaintenance_id());
+
             maintenanceDtos.add(maintenanceDto);
         }
         return maintenanceDtos;

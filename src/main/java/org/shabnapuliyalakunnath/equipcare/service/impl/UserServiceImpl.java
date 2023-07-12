@@ -5,11 +5,13 @@ import org.shabnapuliyalakunnath.equipcare.dto.UserDto;
 import org.shabnapuliyalakunnath.equipcare.entity.Equipment;
 import org.shabnapuliyalakunnath.equipcare.entity.Maintenance;
 import org.shabnapuliyalakunnath.equipcare.entity.User;
+import org.shabnapuliyalakunnath.equipcare.exceptions.UserIdMismatchException;
 import org.shabnapuliyalakunnath.equipcare.repository.EquipmentRepository;
 import org.shabnapuliyalakunnath.equipcare.repository.MaintenanceRepository;
 import org.shabnapuliyalakunnath.equipcare.repository.UserRepository;
 import org.shabnapuliyalakunnath.equipcare.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +31,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private MaintenanceRepository maintenanceRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
 
     //Implementation of create user
     @Override
@@ -36,7 +41,7 @@ public class UserServiceImpl implements UserService {
         User userEntity = null;
         userEntity = userRepository.findByEmail(user.getEmail());
         if(userEntity != null) {
-            return "Email Id Already Used !!";
+            throw new UserIdMismatchException("Email Id Already Used !!");   //Ex
         }
         userEntity = new User();
         userEntity.setCreated_by("Admin");  //TODO: Dynamic
@@ -49,7 +54,7 @@ public class UserServiceImpl implements UserService {
         try {
             userRepository.save(userEntity);
         } catch (Exception ex) {
-
+            return "failed";
         }
         return "Success";
     }
@@ -89,6 +94,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUser(String userId) {
+        if(null == userId) return null;
+        if("".equalsIgnoreCase(userId.trim())) return null;
 
         User user = userRepository.findByEmail(userId);
         UserDto userDto = null;
@@ -148,7 +155,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void register(UserDto userReq) {
         User user = userRepository.findByEmail(userReq.getEmail());
-        user.setPassword("{noop}"+userReq.getPassword());
+        //user.setPassword("{noop}"+userReq.getPassword());
+        user.setPassword(passwordEncoder.encode(userReq.getPassword()));
         userRepository.save(user);
     }
 }
